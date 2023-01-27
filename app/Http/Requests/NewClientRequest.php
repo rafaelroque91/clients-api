@@ -28,8 +28,8 @@ class NewClientRequest extends FormRequest
         return [            
             'name' => ['required','string','max:100',new WordCount(2)],
             'cpf' => ['required','numeric','unique:clients','digits:11',new ValidCPF()],            
-            'birth_date' => 'required|date',         
-            'phone' => 'nullable|numeric|digits_between:10,11',         
+            'birth_date' => ['required','date'],         
+            'phone' => ['nullable','numeric','digits_between:10,11'],         
         ];
     }
 }
