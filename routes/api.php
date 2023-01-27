@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/clients')->group(function () {
     Route::get('/list', [ClientController::class, 'listClients']);
+    Route::post('/new', [ClientController::class, 'newClient']);   
 });

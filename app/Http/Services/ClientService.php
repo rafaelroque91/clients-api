@@ -19,4 +19,17 @@ class ClientService {
             return ["success" => false, "message" => "Erro ao tentar buscar Clientes. " . $e->getMessage()];      
         }  
     }
+
+    public function newClient(array $clientData) : array {
+        try {           
+            $newUser = ClientRepository::create($clientData);
+            if ($newUser){
+                return ["success" => true, "result" => $newUser,"message" => "Usuário cadastrado com sucesso"];     
+            }     
+            return ["success" => false, "message" => "Não foi possível cadastrar o cliente."];              
+           
+        } catch (Exception $e) {    
+            return ["success" => false, "message" => "Erro ao tentar cadastrar o Cliente. " . $e->getMessage()];      
+        }         
+    }     
 }
