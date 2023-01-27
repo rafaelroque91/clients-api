@@ -2,6 +2,7 @@
 namespace App\Http\Services;
 
 use App\Http\Repositories\ClientRepository;
+use App\Models\Client;
 use Exception;
 
 class ClientService {
@@ -32,4 +33,17 @@ class ClientService {
             return ["success" => false, "message" => "Erro ao tentar cadastrar o Cliente. " . $e->getMessage()];      
         }         
     }     
+
+    public function deleteClient(Client $client) : array {
+        try {           
+            $deleteUser = ClientRepository::delete($client);
+            if ($deleteUser){
+                return ["success" => true, "message" => "Cliente excluído com sucesso"];     
+            }     
+            return ["success" => false, "message" => "Não foi possível excluir o cliente."];              
+           
+        } catch (Exception $e) {    
+            return ["success" => false, "message" => "Erro ao tentar excluir o Cliente. " . $e->getMessage()];      
+        }         
+    }  
 }

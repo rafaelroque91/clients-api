@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewClientRequest;
 use App\Http\Services\ClientService;
-
+use App\Models\Client;
 
 class ClientController extends BaseController
 {
@@ -28,6 +28,13 @@ class ClientController extends BaseController
         $validatedClient = $request->validated();
 
         $returnClient = $this->clientService->newClient($validatedClient);    
+
+        return $this->responseData($returnClient);         
+    } 
+
+    public function deleteClient(Client $client){
+
+        $returnClient = $this->clientService->deleteClient($client);    
 
         return $this->responseData($returnClient);         
     } 

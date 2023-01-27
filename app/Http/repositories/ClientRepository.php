@@ -13,4 +13,8 @@ class ClientRepository extends BaseRepository {
     public static function create(array $data) {   
         return Client::create($data);        
     }
+
+    public static function delete(Client $client) {   
+        return $client->delete();        
+    }
 }
