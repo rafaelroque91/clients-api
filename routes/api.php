@@ -18,4 +18,5 @@ Route::prefix('/clients')->group(function () {
     Route::get('/list', [ClientController::class, 'listClients']);
     Route::post('/new', [ClientController::class, 'newClient']);   
     Route::delete('/{client}', [ClientController::class, 'deleteClient']);  
+    Route::post('/filter', [ClientController::class, 'filterClient']);  
 });

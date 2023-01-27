@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilterClientRequest;
 use App\Http\Requests\NewClientRequest;
 use App\Http\Services\ClientService;
 use App\Models\Client;
@@ -35,6 +36,15 @@ class ClientController extends BaseController
     public function deleteClient(Client $client){
 
         $returnClient = $this->clientService->deleteClient($client);    
+
+        return $this->responseData($returnClient);         
+    } 
+
+    public function filterClient(FilterClientRequest $request){
+
+        $validatedFilter = $request->validated();
+
+        $returnClient = $this->clientService->filterClient($validatedFilter);    
 
         return $this->responseData($returnClient);         
     } 

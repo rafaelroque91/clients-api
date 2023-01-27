@@ -46,4 +46,17 @@ class ClientService {
             return ["success" => false, "message" => "Erro ao tentar excluir o Cliente. " . $e->getMessage()];      
         }         
     }  
+
+    public function filterClient(array $filterData) : array {
+        try {           
+            $filteredUsers = ClientRepository::filter($filterData,["name"]);
+            if ($filteredUsers){
+                return ["success" => true, "result" => $filteredUsers, "message" => "Clientes filtrados com sucesso"];     
+            }     
+            return ["success" => false, "message" => "Não foi possível filtrar os clientes."];              
+           
+        } catch (Exception $e) {    
+            return ["success" => false, "message" => "Erro ao tentar filtrar Clientes. " . $e->getMessage()];      
+        }         
+    }  
 }
